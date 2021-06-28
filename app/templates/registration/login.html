@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<h2>ログイン</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <th>email</th>
+            <td>
+                <input type="email" name="email">
+            </td>
+        </tr>
+        <tr>
+            <th>password</th>
+            <td>
+                <input type="password" name="password">
+            </td>
+        </tr>
+        {% if message %}
+        <tr>
+            <td colspan="2">{{ message | linebreaksbr }}</td>
+        </tr>
+        {% endif %}
+    </table>
+    <input type="submit" value="ログインする">
+</form>
+
+<p>
+    ユーザ新規作成は<a href="{% url 'app:user_create' %}">こちら</a>
+</p>
+{% endblock %}

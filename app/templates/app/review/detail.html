@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<h2>{{ review.title }} の詳細</h2>
+
+<table>
+    <tr>
+        <th>スポット</th>
+        <td>{{ review.spot }}</td>
+    </tr>
+    <tr>
+        <th>ユーザ</th>
+        <td>{{ review.user }}</td>
+    </tr>
+    <tr>
+        <th>評価</th>
+        <td>{{ review.get_star_display }}</td>
+    </tr>
+    <tr>
+        <th>作成日時</th>
+        <td>
+            {{ review.created_at | date }}<br>
+            {{ review.created_at | time }}
+        </td>
+    </tr>
+    <tr>
+        <th>更新日時</th>
+        <td>
+            {{ review.updated_at | date }}<br>
+            {{ review.updated_at | time }}
+        </td>
+    </tr>
+</table>
+
+<p>
+    <a href="{% url 'app:review_update' review.pk %}">このReviewを編集する</a> /
+    <a href="{% url 'app:review_delete' review.pk %}">このReviewを削除する</a>
+</p>
+{% endblock %}

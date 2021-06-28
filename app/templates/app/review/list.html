@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<h2>{{ review_list | length }} 件のReview</h2>
+
+<table>
+    <tr>
+        <th>スポット</th>
+        <th>ユーザ</th>
+        <th>評価</th>
+    </tr>
+    {% for review in review_list %}
+    <tr>
+        <td>
+            <a href="{% url 'app:spot_detail' review.spot.pk %}">
+                {{ review.spot }}
+            </a>
+        </td>
+        <td>
+            <a href="{% url 'app:user_detail' review.user.pk %}">
+                {{ review.user }}
+            </a>
+        </td>
+        <td>
+            <a href="{% url 'app:review_detail' review.pk %}">
+                {{ review.get_star_display }}
+            </a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="5">該当するReviewがありません。</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

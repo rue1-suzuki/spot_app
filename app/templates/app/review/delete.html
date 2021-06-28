@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<h2>Review削除</h2>
+
+<p>{{ review.title }} を削除しますか？</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="削除する">
+</form>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<h2>{{ spot.title }} の詳細</h2>
+
+<table>
+    <tr>
+        <th>スポット名</th>
+        <td>
+            <a href="{% url 'app:spot_detail' spot.pk %}">
+                {{ spot.title }}
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <th>作成日時</th>
+        <td>
+            {{ spot.created_at | date }}<br>
+            {{ spot.created_at | time }}
+        </td>
+    </tr>
+    <tr>
+        <th>更新日時</th>
+        <td>
+            {{ spot.updated_at | date }}<br>
+            {{ spot.updated_at | time }}
+        </td>
+    </tr>
+</table>
+
+<p>
+    <a href="{% url 'app:spot_update' spot.pk %}">このSpotを編集する</a> /
+    <a href="{% url 'app:spot_delete' spot.pk %}">このSpotを削除する</a>
+</p>
+{% endblock %}

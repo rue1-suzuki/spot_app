@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<h2>{{ spot_list | length }} 件のSpot</h2>
+
+<table>
+    <tr>
+        <th>都道府県</th>
+        <th>スポット名</th>
+        <th>レビュー</th>
+    </tr>
+    {% for spot in spot_list %}
+    <tr>
+        <td>{{ spot.get_prefecture_display }}</td>
+        <td>
+            <a href="{% url 'app:spot_detail' spot.pk %}">
+                {{ spot.title | truncatechars:8 }}
+            </a>
+        </td>
+        <td>
+            現在 {{ spot.count_review }} 件のレビュー /
+            <a href="{% url 'app:review_create' spot.pk %}">
+                レビューする
+            </a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="5">該当するSpotがありません。</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
